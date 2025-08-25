@@ -129,9 +129,13 @@ if uploaded_file is not None:
 
             if extracted_text:
                 st.session_state.extracted_text = extracted_text
+                # --- CAMBIO CLAVE 1: Guardamos el nombre del archivo ---
+                st.session_state.original_filename = uploaded_file.name
             else:
                 st.warning("No se pudo extraer texto de la imagen o el texto está vacío.")
                 st.session_state.extracted_text = ""
+                st.session_state.original_filename = ""
+
 
     except Exception as e:
         st.error(f"No se pudo abrir el archivo de imagen. ¿Estás seguro de que es un formato válido? Error: {e}")
@@ -151,7 +155,8 @@ if 'extracted_text' in st.session_state and st.session_state.extracted_text:
     st.download_button(
         label="📥 Descargar Texto (.txt)",
         data=text_area_content.encode('utf-8'),
-        file_name=f'texto_extraido_{uploaded_file.name}.txt',
+        # --- CAMBIO CLAVE 2: Usamos el nombre de archivo guardado ---
+        file_name=f'texto_extraido_{st.session_state.original_filename}.txt',
         mime='text/plain'
     )
 
