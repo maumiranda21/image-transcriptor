@@ -11,31 +11,52 @@ st.set_page_config(
     initial_sidebar_state="auto"
 )
 
-# --- Estilos CSS para mejorar la apariencia ---
+# --- Estilos CSS para el modo noche ---
 st.markdown("""
 <style>
+    body {
+        color: #fafafa; /* Color de texto principal */
+        background-color: #0e1117; /* Color de fondo principal */
+    }
     .stApp {
-        background-color: #f0f2f6;
+        background-color: #0e1117;
     }
     .stButton>button {
-        background-color: #4CAF50;
+        background-color: #0068c9; /* Azul brillante para botones */
         color: white;
         border-radius: 12px;
         padding: 10px 24px;
-        border: none;
+        border: 1px solid #0068c9;
         font-size: 16px;
         transition: all 0.3s;
     }
     .stButton>button:hover {
-        background-color: #45a049;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #0055a4;
+        border-color: #0055a4;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
     }
-    .stFileUploader label {
+    .stFileUploader label, .stTextArea label, .stSelectbox label {
+        color: #fafafa !important; /* Asegura que las etiquetas sean blancas */
         font-size: 1.1rem;
         font-weight: bold;
     }
     h1, h2, h3 {
-        color: #1E3A8A; /* Un azul oscuro */
+        color: #2196F3; /* Azul claro para los títulos */
+    }
+    /* Estilo para el área de texto */
+    .stTextArea textarea {
+        background-color: #262730;
+        color: #fafafa;
+        border: 1px solid #3c3f44;
+    }
+    /* Estilo para el selectbox */
+    .stSelectbox > div > div {
+        background-color: #262730;
+        color: #fafafa;
+    }
+    /* Cambia el color del texto de la leyenda de la imagen */
+    .stImage figcaption {
+        color: #a0a0a0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -136,4 +157,3 @@ if 'extracted_text' in st.session_state and st.session_state.extracted_text:
 
 st.markdown("---")
 st.markdown("Hecho con ❤️ usando **Streamlit** y **Tesseract**.")
-
